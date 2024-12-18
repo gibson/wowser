@@ -1,5 +1,4 @@
 import Configstore from 'configstore';
-import Promise from 'bluebird';
 import inquirer from 'inquirer';
 
 import pkg from '../../../package.json';

@@ -1,5 +1,3 @@
-import Promise from 'bluebird';
-
 class Task {
 
   constructor(...args) {

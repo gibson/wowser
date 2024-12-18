@@ -1,5 +1,3 @@
-import Promise from 'bluebird';
-
 class Loader {
 
   constructor() {
@@ -14,7 +12,7 @@ class Loader {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', encodeURI(uri), true);
 
-      xhr.onload = function(_event) {
+      xhr.onload = function (_event) {
         // TODO: Handle failure
         if (this.status >= 200 && this.status < 400) {
           resolve(this.response);
