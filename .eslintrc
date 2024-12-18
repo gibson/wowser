@@ -1,5 +1,5 @@
 {
-  "extends": "timkurvers/react",
+  "extends": "airbnb",
   "rules": {
     // Allow vertically aligning values
     "no-multi-spaces": [0],

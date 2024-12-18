@@ -65,9 +65,12 @@ class Socket extends EventEmitter {
         }
       };
 
-      this.socket.onerror = function(e) {
+      this.socket.onerror = function (e) {
         console.error(e);
       };
+      this.socket.onclose = function (e) {
+        console.log(`Socked was closed`, e);
+      }
     }
 
     return this;

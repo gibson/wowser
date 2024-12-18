@@ -29,7 +29,7 @@ class Config {
     this.version = '3.3.5';
     this.timezone = 0;
 
-    this.locale = 'enUS';
+    this.locale = 'ruRU';
     this.os = 'Win';
     this.platform = 'x86';
 
@@ -40,7 +40,7 @@ class Config {
     [
       this.majorVersion,
       this.minorVersion,
-      this.patchVersion
+      this.patchVersion,
     ] = version.split('.').map(function(bit) {
       return parseInt(bit, 10);
     });

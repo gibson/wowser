@@ -40,7 +40,7 @@ class CharactersScreen extends React.Component {
   }
 
   _onCharacterSelect(event) {
-    this.setState({ character: event.target.value });
+    this.setState({character: this.state.characters[event.target.value]});
   }
 
   _onJoin() {
@@ -72,24 +72,24 @@ class CharactersScreen extends React.Component {
             At some point this screen will allow managing characters. Soon™
           </p>
 
-          <form onSubmit={ this._onSubmit }>
+          <form onSubmit={this._onSubmit}>
             <fieldset>
-              <select value={ this.state.character }
-                      onChange={ this._onCharacterSelect }>
-                { this.state.characters.map((character) => {
+              <select value={this.state.character}
+                      onChange={this._onCharacterSelect}>
+                {this.state.characters.map((character, number) => {
                   return (
-                    <option key={ character.guid } value={ character }>
-                      { character.name }
+                    <option key={character.guid} value={number}>
+                      {character.name}
                     </option>
                   );
-                }) }
+                })}
               </select>
             </fieldset>
 
             <div className="divider"></div>
 
-            <input type="submit" value="Join world" autoFocus />
-            <input type="button" value="Refresh" onClick={ this.refresh } />
+            <input type="submit" value="Join world" autoFocus/>
+            <input type="button" value="Refresh" onClick={this.refresh}/>
           </form>
         </div>
       </characters>

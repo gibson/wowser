@@ -32,7 +32,9 @@ class RealmsScreen extends React.Component {
   }
 
   connect(realm) {
-    session.game.connect('localhost', realm.port);
+    // for now use fixed port
+    //session.game.connect('localhost', realm.port);
+    session.game.connect('localhost', 8085);
   }
 
   refresh() {
