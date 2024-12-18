@@ -1,0 +1,80 @@
+wowser .portrait {
+  display: block;
+  position: relative;
+  width: 178px;
+  height: 60px;
+  background: url("./images/portrait.png") no-repeat;
+}
+
+wowser .portrait .icon {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  z-index: 1;
+}
+
+wowser .portrait .name {
+  position: absolute;
+  top: 4px;
+  left: 64px;
+  color: #fc0;
+  font-size: 15px;
+}
+
+wowser .portrait .level {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  font-size: 11px;
+}
+
+wowser .portrait .divider {
+  position: absolute;
+  top: 20px;
+  right: 3px;
+  width: 113px;
+}
+
+wowser .portrait .health,
+wowser .portrait .mana {
+  width: 115px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 11px;
+  text-shadow: 1px 1px 0px #000;
+  text-align: center;
+}
+
+wowser .portrait .health {
+  position: absolute;
+  bottom: 23px;
+  right: 6px;
+  background-image: linear-gradient(180deg, #300 0%, #900 100%);
+  box-shadow: -1px -1px 0px #600, 1px 1px 0px #e50202;
+}
+
+wowser .portrait .mana {
+  position: absolute;
+  bottom: 7px;
+  right: 20px;
+  background-image: linear-gradient(180deg, #021d39 0%, #0b4c93 100%);
+  box-shadow: -1px -1px 0px #063467, 1px 1px 0px #146cd0;
+}
+
+wowser .portrait.self {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+wowser .portrait.target {
+  position: absolute;
+  top: 12px;
+  left: 210px;
+}
+
+wowser .icon.portrait {
+  width: 66px;
+  height: 66px;
+  background: url("./images/icon-portrait.png") no-repeat;
+}

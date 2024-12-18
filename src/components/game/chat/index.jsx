@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'classnames';
 
-import './index.styl';
+import './index.pcss';
 
 import session from '../../wowser/session';
 
@@ -15,9 +15,6 @@ class ChatPanel extends React.Component {
       messages: session.chat.messages
     };
 
-    this._onChange = ::this._onChange;
-    this._onMessage = ::this._onMessage;
-    this._onSubmit = ::this._onSubmit;
 
     session.chat.on('message', this._onMessage);
   }
@@ -32,21 +29,21 @@ class ChatPanel extends React.Component {
     session.chat.messages.push(message);
   }
 
-  _onChange(event) {
+  _onChange = event => {
     this.setState({ text: event.target.value });
-  }
+  };
 
-  _onMessage() {
+  _onMessage = () => {
     this.setState({ messages: session.chat.messages });
-  }
+  };
 
-  _onSubmit(event) {
+  _onSubmit = event => {
     event.preventDefault();
     if (this.state.text) {
       this.send(this.state.text);
       this.setState({ text: '' });
     }
-  }
+  };
 
   render() {
     return (

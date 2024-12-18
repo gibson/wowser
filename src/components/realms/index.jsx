@@ -15,11 +15,6 @@ class RealmsScreen extends React.Component {
       realms: []
     };
 
-    this._onAuthenticate = ::this._onAuthenticate;
-    this._onRealmSelect = ::this._onRealmSelect;
-    this._onRefresh = ::this._onRefresh;
-    this._onSubmit = ::this._onSubmit;
-
     session.realms.on('refresh', this._onRefresh);
     session.game.on('authenticate', this._onAuthenticate);
 
@@ -41,26 +36,26 @@ class RealmsScreen extends React.Component {
     session.realms.refresh();
   }
 
-  _onAuthenticate() {
+  _onAuthenticate = () => {
     session.screen = 'characters';
-  }
+  };
 
-  _onRealmSelect(event) {
-    this.setState({ realm: event.target.value });
-  }
+  _onRealmSelect = (event) => {
+    this.setState({realm: event.target.value});
+  };
 
-  _onRefresh() {
+  _onRefresh = () => {
     const realms = session.realms.list;
     this.setState({
       realm: realms[0],
       realms: realms
     });
-  }
+  };
 
-  _onSubmit(event) {
+  _onSubmit = (event) => {
     event.preventDefault();
     this.connect(this.state.realm);
-  }
+  };
 
   render() {
     return (
@@ -70,24 +65,24 @@ class RealmsScreen extends React.Component {
 
           <div className="divider"></div>
 
-          <form onSubmit={ this._onSubmit }>
+          <form onSubmit={this._onSubmit}>
             <fieldset>
-              <select value={ this.state.realm }
-                      onChange={ this._onRealmSelect }>
-                { this.state.realms.map((realm) => {
+              <select value={this.state.realm}
+                      onChange={this._onRealmSelect}>
+                {this.state.realms.map((realm) => {
                   return (
-                    <option key={ realm.id } value={ realm }>
-                      { realm.name }
+                    <option key={realm.id} value={realm}>
+                      {realm.name}
                     </option>
                   );
-                }) }
+                })}
               </select>
             </fieldset>
 
             <div className="divider"></div>
 
-            <input type="submit" value="Connect" autoFocus />
-            <input type="button" value="Refresh" onClick={ this.refresh } />
+            <input type="submit" value="Connect" autoFocus/>
+            <input type="button" value="Refresh" onClick={this.refresh}/>
           </form>
         </div>
       </realms>

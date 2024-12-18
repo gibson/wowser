@@ -29,7 +29,7 @@ class WMOManager {
 
     this.queues = {
       loadEntry: new ContentQueue(
-        ::this.processLoadEntry,
+        this.processLoadEntry,
         this.constructor.LOAD_ENTRY_INTERVAL,
         this.constructor.LOAD_ENTRY_WORK_FACTOR,
         this.constructor.LOAD_ENTRY_WORK_MIN
@@ -144,7 +144,7 @@ class WMOManager {
     wmoHandler.cancelUnload();
   }
 
-  processLoadEntry(wmoEntry) {
+  processLoadEntry = wmoEntry => {
     const wmoHandler = new WMOHandler(this, wmoEntry);
     this.entries.set(wmoEntry.id, wmoHandler);
 
@@ -154,7 +154,7 @@ class WMOManager {
       this.counters.loadingEntries--;
       this.counters.loadedEntries++;
     });
-  }
+  };
 
   animate(delta, camera, cameraMoved) {
     this.entries.forEach((wmoHandler) => {

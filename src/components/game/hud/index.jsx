@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './index.styl';
+import './index.pcss';
 
 // TODO: import Chat from '../chat';
 import Portrait from '../portrait';

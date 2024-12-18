@@ -18,12 +18,12 @@ class GameHandler extends Socket {
     this.session = session;
 
     // Listen for incoming data
-    this.on('data:receive', ::this.dataReceived);
+    this.on('data:receive', this.dataReceived);
 
     // Delegate packets
-    this.on('packet:receive:SMSG_AUTH_CHALLENGE', ::this.handleAuthChallenge);
-    this.on('packet:receive:SMSG_AUTH_RESPONSE', ::this.handleAuthResponse);
-    this.on('packet:receive:SMSG_LOGIN_VERIFY_WORLD', ::this.handleWorldLogin);
+    this.on('packet:receive:SMSG_AUTH_CHALLENGE', this.handleAuthChallenge);
+    this.on('packet:receive:SMSG_AUTH_RESPONSE', this.handleAuthResponse);
+    this.on('packet:receive:SMSG_LOGIN_VERIFY_WORLD', this.handleWorldLogin);
   }
 
   // Connects to given host through given port
@@ -65,7 +65,7 @@ class GameHandler extends Socket {
   }
 
   // Data received handler
-  dataReceived(_socket) {
+  dataReceived = _socket => {
     while (true) {
       if (!this.connected) {
         return;
@@ -104,10 +104,10 @@ class GameHandler extends Socket {
         return;
       }
     }
-  }
+  };
 
   // Auth challenge handler (SMSG_AUTH_CHALLENGE)
-  handleAuthChallenge(gp) {
+  handleAuthChallenge = gp => {
     console.info('handling auth challenge');
 
     gp.readUnsignedInt(); // (0x01)
@@ -146,10 +146,10 @@ class GameHandler extends Socket {
 
     this._crypt = new Crypt();
     this._crypt.key = this.session.auth.key;
-  }
+  };
 
   // Auth response handler (SMSG_AUTH_RESPONSE)
-  handleAuthResponse(gp) {
+  handleAuthResponse = gp => {
     console.info('handling auth response');
 
     // Handle result byte
@@ -169,12 +169,12 @@ class GameHandler extends Socket {
     // TODO: Ensure the account is flagged as WotLK (expansion //2)
 
     this.emit('authenticate');
-  }
+  };
 
   // World login handler (SMSG_LOGIN_VERIFY_WORLD)
-  handleWorldLogin(_gp) {
+  handleWorldLogin = _gp => {
     this.emit('join');
-  }
+  };
 
 }
 

@@ -26,7 +26,7 @@ class ChatHandler extends EventEmitter {
     ];
 
     // Listen for messages
-    this.session.game.on('packet:receive:SMSG_MESSAGE_CHAT', ::this.handleMessage);
+    this.session.game.on('packet:receive:SMSG_MESSAGE_CHAT', this.handleMessage);
   }
 
   // Creates chat message
@@ -40,7 +40,7 @@ class ChatHandler extends EventEmitter {
   }
 
   // Message handler (SMSG_MESSAGE_CHAT)
-  handleMessage(gp) {
+  handleMessage = gp => {
     gp.readUnsignedByte(); // type
     gp.readUnsignedInt(); // language
     const guid1 = gp.readGUID();
@@ -57,7 +57,7 @@ class ChatHandler extends EventEmitter {
     this.messages.push(message);
 
     this.emit('message', message);
-  }
+  };
 
 }
 

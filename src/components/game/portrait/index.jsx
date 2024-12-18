@@ -1,15 +1,9 @@
 import React from 'react';
 import classes from 'classnames';
 
-import './index.styl';
+import './index.pcss';
 
 class Portrait extends React.Component {
-
-  static propTypes = {
-    self: React.PropTypes.bool,
-    unit: React.PropTypes.object.isRequired,
-    target: React.PropTypes.bool
-  };
 
   render() {
     const unit = this.props.unit;

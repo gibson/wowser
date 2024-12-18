@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import Wowser from './components/wowser';
+import {createRoot} from 'react-dom/client';
 
-ReactDOM.render(<Wowser />, document.querySelector('app'));
+const domNode = document.querySelector('app');
+const root = createRoot(domNode);
+root.render(<Wowser/>);

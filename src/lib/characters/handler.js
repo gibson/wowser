@@ -17,7 +17,7 @@ class CharacterHandler extends EventEmitter {
     this.list = [];
 
     // Listen for character list
-    this.session.game.on('packet:receive:SMSG_CHAR_ENUM', ::this.handleCharacterList);
+    this.session.game.on('packet:receive:SMSG_CHAR_ENUM', this.handleCharacterList);
   }
 
   // Requests a fresh list of characters
@@ -30,7 +30,7 @@ class CharacterHandler extends EventEmitter {
   }
 
   // Character list refresh handler (SMSG_CHAR_ENUM)
-  handleCharacterList(gp) {
+  handleCharacterList = gp => {
     const count = gp.readByte(); // number of characters
 
     this.list.length = 0;
@@ -80,7 +80,7 @@ class CharacterHandler extends EventEmitter {
     }
 
     this.emit('refresh');
-  }
+  };
 
 }
 

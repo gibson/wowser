@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './index.styl';
+import './index.pcss';
 
 class QuestsPanel extends React.Component {
 

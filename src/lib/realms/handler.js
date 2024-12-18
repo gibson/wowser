@@ -17,7 +17,7 @@ class RealmsHandler extends EventEmitter {
     this.list = [];
 
     // Listen for realm list
-    this.session.auth.on('packet:receive:REALM_LIST', ::this.handleRealmList);
+    this.session.auth.on('packet:receive:REALM_LIST', this.handleRealmList);
   }
 
   // Requests a fresh list of realms
@@ -33,7 +33,7 @@ class RealmsHandler extends EventEmitter {
   }
 
   // Realm list refresh handler (REALM_LIST)
-  handleRealmList(ap) {
+  handleRealmList = ap => {
     ap.readShort();         // packet-size
     ap.readUnsignedInt();   // (?)
 
@@ -66,7 +66,7 @@ class RealmsHandler extends EventEmitter {
     }
 
     this.emit('refresh');
-  }
+  };
 
 }
 

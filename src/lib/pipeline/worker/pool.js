@@ -8,7 +8,6 @@ class WorkerPool {
     this.queue = [];
     this.threads = [];
 
-    this.next = ::this.next;
   }
 
   get defaultConcurrency() {
@@ -35,7 +34,7 @@ class WorkerPool {
     return task.promise;
   }
 
-  next() {
+  next = () => {
     if (this.queue.length) {
       const thread = this.thread;
       if (thread) {
@@ -43,9 +42,9 @@ class WorkerPool {
         thread.execute(task).then(this.next).catch(this.next);
       }
     }
-  }
+  };
 
 }
 
-export { WorkerPool };
+export {WorkerPool};
 export default new WorkerPool();

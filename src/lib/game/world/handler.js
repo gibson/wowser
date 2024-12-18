@@ -16,10 +16,6 @@ class WorldHandler extends EventEmitter {
 
     this.map = null;
 
-    this.changeMap = ::this.changeMap;
-    this.changeModel = ::this.changeModel;
-    this.changePosition = ::this.changePosition;
-
     this.entities = new Set();
     this.add(this.player);
 
@@ -104,7 +100,7 @@ class WorldHandler extends EventEmitter {
     this.map.render(x, y);
   }
 
-  changeMap(mapID) {
+  changeMap = mapID => {
     WorldMap.load(mapID).then((map) => {
       if (this.map) {
         this.scene.remove(this.map);
@@ -113,14 +109,14 @@ class WorldHandler extends EventEmitter {
       this.scene.add(this.map);
       this.renderAtCoords(this.player.position.x, this.player.position.y);
     });
-  }
+  };
 
-  changeModel(_unit, _oldModel, _newModel) {
-  }
+  changeModel = (_unit, _oldModel, _newModel) => {
+  };
 
-  changePosition(player) {
+  changePosition = player => {
     this.renderAtCoords(player.position.x, player.position.y);
-  }
+  };
 
   animate(delta, camera, cameraMoved) {
     this.animateEntities(delta, camera, cameraMoved);

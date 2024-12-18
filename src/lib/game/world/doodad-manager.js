@@ -21,18 +21,13 @@ class DoodadManager {
     this.entriesPendingLoad = new Map();
     this.entriesPendingUnload = new Map();
 
-    this.loadChunk = ::this.loadChunk;
-    this.unloadChunk = ::this.unloadChunk;
-    this.loadDoodads = ::this.loadDoodads;
-    this.unloadDoodads = ::this.unloadDoodads;
-
     // Kick off intervals.
     this.loadDoodads();
     this.unloadDoodads();
   }
 
   // Process a set of doodad entries for a given chunk index of the world map.
-  loadChunk(index, entries) {
+  loadChunk = (index, entries) => {
     for (let i = 0, len = entries.length; i < len; ++i) {
       const entry = entries[i];
 
@@ -57,9 +52,9 @@ class DoodadManager {
       // Add to pending loads. Actual loading is done by interval.
       this.entriesPendingLoad.set(entry.id, entry);
     }
-  }
+  };
 
-  unloadChunk(index, entries) {
+  unloadChunk = (index, entries) => {
     for (let i = 0, len = entries.length; i < len; ++i) {
       const entry = entries[i];
 
@@ -82,10 +77,10 @@ class DoodadManager {
       // Add to pending unloads. Actual unloading is done by interval.
       this.entriesPendingUnload.set(entry.id, entry);
     }
-  }
+  };
 
   // Every tick of the load interval, load a portion of any doodads pending load.
-  loadDoodads() {
+  loadDoodads = () => {
     let count = 0;
 
     for (const entry of this.entriesPendingLoad.values()) {
@@ -110,7 +105,7 @@ class DoodadManager {
     }
 
     setTimeout(this.loadDoodads, this.constructor.LOAD_INTERVAL);
-  }
+  };
 
   loadDoodad(entry) {
     M2Blueprint.load(entry.filename).then((doodad) => {
@@ -144,7 +139,7 @@ class DoodadManager {
   }
 
   // Every tick of the load interval, unload a portion of any doodads pending unload.
-  unloadDoodads() {
+  unloadDoodads = () => {
     let count = 0;
 
     for (const entry of this.entriesPendingUnload.values()) {
@@ -171,7 +166,7 @@ class DoodadManager {
 
     setTimeout(this.unloadDoodads, this.constructor.LOAD_INTERVAL);
     return;
-  }
+  };
 
   unloadDoodad(entry) {
     const doodad = this.doodads.get(entry.id);

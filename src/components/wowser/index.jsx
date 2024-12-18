@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './index.styl';
+import './index.pcss';
 
 import AuthScreen from '../auth';
 import CharactersScreen from '../characters';
@@ -26,9 +26,6 @@ class Wowser extends React.Component {
       screen: session.screen
     };
 
-    this._onScreenChange = ::this._onScreenChange;
-    this._onScreenSelect = ::this._onScreenSelect;
-
     session.on('screen:change', this._onScreenChange);
   }
 
@@ -36,16 +33,16 @@ class Wowser extends React.Component {
     const Screen = this.constructor.SCREENS.find((screen) => {
       return screen.id === this.state.screen;
     });
-    return <Screen />;
+    return <Screen/>;
   }
 
-  _onScreenChange(_from, to) {
-    this.setState({ screen: to });
-  }
+  _onScreenChange = (_from, to) => {
+    this.setState({screen: to});
+  };
 
-  _onScreenSelect(event) {
+  _onScreenSelect = (event) => {
     session.screen = event.target.value;
-  }
+  };
 
   render() {
     const screens = this.constructor.SCREENS;
@@ -58,18 +55,18 @@ class Wowser extends React.Component {
         </div>
 
         <select className="screen-selector"
-                value={ this.state.screen }
-                onChange={ this._onScreenSelect }>
-          { screens.map((screen) => {
+                value={this.state.screen}
+                onChange={this._onScreenSelect}>
+          {screens.map((screen) => {
             return (
-              <option key={ screen.id } value={ screen.id }>
-                { screen.title }
+              <option key={screen.id} value={screen.id}>
+                {screen.title}
               </option>
             );
-          }) }
+          })}
         </select>
 
-        { this.currentScreen }
+        {this.currentScreen}
       </wowser>
     );
   }

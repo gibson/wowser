@@ -1,9 +1,8 @@
-import Worker from 'worker!./';
+import Worker from './worker?worker';
 
 class Thread {
 
   constructor() {
-    this._onMessage = ::this._onMessage;
 
     this.worker = new Worker();
     this.worker.addEventListener('message', this._onMessage);
@@ -23,7 +22,7 @@ class Thread {
     return this.task.promise;
   }
 
-  _onMessage(event) {
+  _onMessage = event => {
     const [success, ...args] = event.data;
     if (success) {
       this.task.resolve(args);
@@ -31,7 +30,7 @@ class Thread {
       this.task.reject(args);
     }
     this.task = null;
-  }
+  };
 
 }
 

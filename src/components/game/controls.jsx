@@ -3,12 +3,6 @@ import THREE from 'three';
 import key from 'keymaster';
 
 class Controls extends React.Component {
-
-  static propTypes = {
-    camera: React.PropTypes.object.isRequired,
-    for: React.PropTypes.object.isRequired
-  };
-
   constructor(props) {
     super();
 
@@ -51,11 +45,6 @@ class Controls extends React.Component {
     this.quatInverse = this.quat.clone().inverse();
 
     this.EPS = 0.000001;
-
-    this._onMouseDown = ::this._onMouseDown;
-    this._onMouseUp = ::this._onMouseUp;
-    this._onMouseMove = ::this._onMouseMove;
-    this._onMouseWheel = ::this._onMouseWheel;
 
     this.element.addEventListener('mousedown', this._onMouseDown);
     this.element.addEventListener('mouseup', this._onMouseUp);
@@ -176,16 +165,16 @@ class Controls extends React.Component {
     this.scale *= this.zoomScale;
   }
 
-  _onMouseDown(event) {
+  _onMouseDown = (event) => {
     this.rotating = true;
     this.rotateStart.set(event.clientX, event.clientY);
-  }
+  };
 
-  _onMouseUp() {
+  _onMouseUp = () => {
     this.rotating = false;
-  }
+  };
 
-  _onMouseMove(event) {
+  _onMouseMove = event => {
     if (this.rotating) {
       event.preventDefault();
 
@@ -204,9 +193,9 @@ class Controls extends React.Component {
 
       this.update();
     }
-  }
+  };
 
-  _onMouseWheel(event) {
+  _onMouseWheel = event => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -218,7 +207,7 @@ class Controls extends React.Component {
     }
 
     this.update();
-  }
+  };
 
   render() {
     return null;

@@ -9,8 +9,6 @@ class WMOGroup extends THREE.Mesh {
   constructor(wmo, id, data, path) {
     super();
 
-    this.dispose = ::this.dispose;
-
     this.matrixAutoUpdate = false;
 
     this.wmo = wmo;
@@ -147,13 +145,13 @@ class WMOGroup extends THREE.Mesh {
     return new this.constructor(this.wmo, this.groupID, this.data, this.path);
   }
 
-  dispose() {
+  dispose = () => {
     this.geometry.dispose();
 
     this.material.materials.forEach((material) => {
       material.dispose();
     });
-  }
+  };
 
 }
 

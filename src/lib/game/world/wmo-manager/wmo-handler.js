@@ -36,14 +36,14 @@ class WMOHandler {
 
     this.queues = {
       loadGroup: new ContentQueue(
-        ::this.processLoadGroup,
+        this.processLoadGroup,
         this.constructor.LOAD_GROUP_INTERVAL,
         this.constructor.LOAD_GROUP_WORK_FACTOR,
         this.constructor.LOAD_GROUP_WORK_MIN
       ),
 
       loadDoodad: new ContentQueue(
-        ::this.processLoadDoodad,
+        this.processLoadDoodad,
         this.constructor.LOAD_DOODAD_INTERVAL,
         this.constructor.LOAD_DOODAD_WORK_FACTOR,
         this.constructor.LOAD_DOODAD_WORK_MIN
@@ -91,7 +91,7 @@ class WMOHandler {
     this.counters.loadingGroups++;
   }
 
-  processLoadGroup(wmoGroupID) {
+  processLoadGroup = wmoGroupID => {
     // Already loaded.
     if (this.groups.has(wmoGroupID)) {
       this.manager.counters.loadingGroups--;
@@ -111,7 +111,7 @@ class WMOHandler {
       this.manager.counters.loadedGroups++;
       this.counters.loadedGroups++;
     });
-  }
+  };
 
   loadGroup(wmoGroupID, wmoGroup) {
     this.placeGroup(wmoGroup);
@@ -204,7 +204,7 @@ class WMOHandler {
   }
 
   scheduleUnload(unloadDelay = 0) {
-    this.pendingUnload = setTimeout(::this.unload, unloadDelay);
+    this.pendingUnload = setTimeout(this.unload, unloadDelay);
   }
 
   cancelUnload() {
@@ -213,7 +213,7 @@ class WMOHandler {
     }
   }
 
-  unload() {
+  unload = () => {
     this.unloading = true;
 
     this.manager.entries.delete(this.entry.id);
@@ -255,7 +255,7 @@ class WMOHandler {
 
     this.root = null;
     this.entry = null;
-  }
+  };
 
   placeRoot() {
     const { position, rotation } = this.entry;

@@ -9,9 +9,6 @@ class ContentQueue {
 
     this.queue = new Map();
 
-    this.schedule = ::this.schedule;
-    this.run = ::this.run;
-
     this.schedule();
   }
 
@@ -38,11 +35,11 @@ class ContentQueue {
     return count;
   }
 
-  schedule() {
+  schedule = () => {
     setTimeout(this.run, this.interval);
-  }
+  };
 
-  run() {
+  run = () => {
     let count = 0;
     const max = Math.min(this.queue.size * this.workFactor, this.minWork);
 
@@ -60,7 +57,7 @@ class ContentQueue {
     }
 
     this.schedule();
-  }
+  };
 
   clear() {
     this.queue.clear();

@@ -1,7 +1,7 @@
 import React from 'react';
 import THREE from 'three';
 
-import './index.styl';
+import './index.pcss';
 
 import Controls from './controls';
 import HUD from './hud';
@@ -15,9 +15,6 @@ class GameScreen extends React.Component {
 
   constructor() {
     super();
-
-    this.animate = ::this.animate;
-    this.resize = ::this.resize;
 
     this.camera = new THREE.PerspectiveCamera(60, this.aspectRatio, 1, 1000);
     this.camera.up.set(0, 0, 1);
@@ -64,13 +61,13 @@ class GameScreen extends React.Component {
     return window.innerWidth / window.innerHeight;
   }
 
-  resize() {
+  resize = () => {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = this.aspectRatio;
     this.camera.updateProjectionMatrix();
   }
 
-  animate() {
+  animate = () => {
     if (!this.renderer) {
       return;
     }
@@ -91,15 +88,15 @@ class GameScreen extends React.Component {
 
     this.prevCameraRotation = this.camera.quaternion.clone();
     this.prevCameraPosition = this.camera.position.clone();
-  }
+  };
 
   render() {
     return (
       <game className="game screen">
         <canvas ref="canvas"></canvas>
-        <HUD />
-        <Controls ref="controls" for={ session.player } camera={ this.camera } />
-        <Stats ref="stats" renderer={ this.renderer } map={ session.world.map } />
+        <HUD/>
+        <Controls ref="controls" for={session.player} camera={this.camera}/>
+        <Stats ref="stats" renderer={this.renderer} map={session.world.map}/>
       </game>
     );
   }

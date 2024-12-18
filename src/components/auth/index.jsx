@@ -17,11 +17,6 @@ class AuthScreen extends React.Component {
       password: ''
     };
 
-    this._onAuthenticate = ::this._onAuthenticate;
-    this._onChange = ::this._onChange;
-    this._onSubmit = ::this._onSubmit;
-    this._onConnect = ::this._onConnect;
-
     session.auth.on('connect', this._onConnect);
     session.auth.on('reject', session.auth.disconnect);
     session.auth.on('authenticate', this._onAuthenticate);
@@ -41,24 +36,24 @@ class AuthScreen extends React.Component {
     session.auth.authenticate(username, password);
   }
 
-  _onAuthenticate() {
+  _onAuthenticate = () => {
     session.screen = 'realms';
-  }
+  };
 
-  _onChange(event) {
+  _onChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  _onConnect() {
+  _onConnect = () => {
     this.authenticate(this.state.username, this.state.password);
-  }
+  };
 
-  _onSubmit(event) {
+  _onSubmit = event => {
     event.preventDefault();
     this.connect(this.state.host, this.state.port);
-  }
+  };
 
   render() {
     return (

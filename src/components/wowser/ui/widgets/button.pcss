@@ -1,0 +1,38 @@
+wowser input[type='submit'],
+wowser input[type='button'],
+wowser button {
+  margin: 0.4em 0 0.3em 0.5em;
+  padding: 0.2em 1em;
+  border: none;
+  border-radius: 4px;
+  background-image: linear-gradient(180deg, #900 0%, #600 60%, #600 100%);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e50202 #900 #700 #e50202;
+  color: #fff;
+  text-shadow: 1px 1px 0px #300;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+}
+wowser input[type='submit']:enabled:active,
+wowser input[type='button']:enabled:active,
+wowser button:enabled:active {
+  background-image: linear-gradient(180deg, #600 0%, #600 26%, #900 100%);
+  border-color: #300;
+  transform: scale(0.97);
+  text-shadow: none;
+  box-shadow: -1px -1px 1px rgba(0,0,0,0.2), 1px 1px 1px rgba(0,0,0,0.2);
+}
+wowser input[type='submit']:enabled:hover,
+wowser input[type='button']:enabled:hover,
+wowser button:enabled:hover {
+  color: #fc0;
+}
+wowser input[type='submit']:disabled,
+wowser input[type='button']:disabled,
+wowser button:disabled {
+  background-image: linear-gradient(180deg, #4a0000 0%, #2a0000 100%);
+  border-color: #8a0000 #400000 #400000 #8a0000;
+  color: #900;
+}

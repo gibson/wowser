@@ -15,11 +15,6 @@ class CharactersScreen extends React.Component {
       characters: []
     };
 
-    this._onCharacterSelect = ::this._onCharacterSelect;
-    this._onJoin = ::this._onJoin;
-    this._onRefresh = ::this._onRefresh;
-    this._onSubmit = ::this._onSubmit;
-
     session.characters.on('refresh', this._onRefresh);
     session.game.on('join', this._onJoin);
 
@@ -39,26 +34,26 @@ class CharactersScreen extends React.Component {
     session.characters.refresh();
   }
 
-  _onCharacterSelect(event) {
+  _onCharacterSelect = event => {
     this.setState({character: this.state.characters[event.target.value]});
-  }
+  };
 
-  _onJoin() {
+  _onJoin = () => {
     session.screen = 'game';
-  }
+  };
 
-  _onRefresh() {
+  _onRefresh = () => {
     const characters = session.characters.list;
     this.setState({
       character: characters[0],
       characters: characters
     });
-  }
+  };
 
-  _onSubmit(event) {
+  _onSubmit = event => {
     event.preventDefault();
     this.join(this.state.character);
-  }
+  };
 
   render() {
     return (
